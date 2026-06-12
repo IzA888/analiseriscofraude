@@ -1,12 +1,14 @@
 package com.example.analiseriscofraude.controller;
 
+import com.example.analiseriscofraude.domain.Pagamento;
+
 public record PedidoDTO(
     String id, 
     String nomeCliente, 
     String emailCliente, 
     String nomeProduto, 
     String descricaoProduto, 
-    double valor
+    Pagamento pagamento
 ) {
 
     public String getId() {
@@ -29,8 +31,7 @@ public record PedidoDTO(
         return descricaoProduto;
     }
 
-    public double getValor() {
-        return valor;
+    public Pagamento getPagamento() {
+        return pagamento;
     }
-
 }

@@ -1,6 +1,8 @@
-package com.example.analiseriscofraude.events;
+package com.example.analiseriscofraude.producer.events;
 
+import com.example.analiseriscofraude.domain.Pagamento;
 import java.time.LocalDateTime;
+
 
 public record PedidoCriadoEvent(
     String id,
@@ -8,11 +10,11 @@ public record PedidoCriadoEvent(
     String emailCliente,
     String nomeProduto,
     String descricaoProduto,
-    double valor,
+    Pagamento pagamento,
     LocalDateTime criadoEm
 ) {
     
-    
+    @Override
     public String toString() {
         return "PedidoCriadoEvent{" +
                 "id='" + getId() + '\'' +
@@ -20,7 +22,7 @@ public record PedidoCriadoEvent(
                 ", emailCliente='" + getEmailCliente() + '\'' +
                 ", nomeProduto='" + getNomeProduto() + '\'' +
                 ", descricaoProduto='" + getDescricaoProduto() + '\'' +
-                ", valor='" + getValor() + '\'' +
+                ", valor='" + pagamento.getValor() + '\'' +
                 ", criadoEm='" + getCriadoEm() + '\'' +
                 '}';
 
@@ -46,13 +48,12 @@ public record PedidoCriadoEvent(
         return descricaoProduto;
     }
 
-    public double getValor() {
-        return valor;
+    public Pagamento getPagamento() {
+        return pagamento;
     }
 
     public LocalDateTime getCriadoEm() {
         return criadoEm;
     }
-
 }
 

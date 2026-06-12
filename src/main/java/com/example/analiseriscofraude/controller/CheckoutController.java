@@ -1,10 +1,13 @@
 package com.example.analiseriscofraude.controller;
 
+import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.analiseriscofraude.events.PedidoCriadoEvent;
+import com.example.analiseriscofraude.producer.events.PedidoCriadoEvent;
 
 @Controller
 public class CheckoutController {
@@ -20,7 +23,7 @@ public class CheckoutController {
             pedido.getEmailCliente(),
             pedido.getNomeProduto(),
             pedido.getDescricaoProduto(),
-            pedido.getValor(),
+            pedido.getPagamento(),
             LocalDateTime.now()
         );
 
