@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.analiseriscofraude.repository.EstoqueRepository;
 import com.example.analiseriscofraude.producer.events.PedidoCriadoEvent;
-import com.example.analiseriscofraude.domain.StatusPagamentoEnum;
+import com.example.analiseriscofraude.domain.Pagamento;
+import com.example.analiseriscofraude.domain.Pedido;
+import com.example.analiseriscofraude.domain.enums.StatusPagamentoEnum;
 
 
 
@@ -29,7 +31,11 @@ public class CheckoutService {
 
     @Transactional
     public String atualizarEstoque(PedidoCriadoEvent pe) {
-        repo.save(pe);
+        Pedido pedido = new Pedido();
+        pedido.setNomeProduto(pe.getNomeProduto());
+        pedido.setDescricaoProduto(pe.getDescricaoProduto());
+        pedido.setPagamento(pe.getPagamento());
+        repo.save(pedido);
         return "Estoque atualizado, pedido: " + pe.getId();
     }
 
@@ -44,7 +50,7 @@ public class CheckoutService {
         return "Pagamento aprovado para o pedido" + pe.getId();        
     }
 
-    private void isFraude(PedidoCriadoEvent.Pagamento pagamento) {
+    private void isFraude(Pagamento pagamento) {
         String prompt = """
                 Analise a seguinte tentativa de compra e responda apenas com 'SEGURO' ou 'SUSPEITO'.
                 Dados do comprador:

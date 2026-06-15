@@ -1,4 +1,4 @@
-package com.example.analiseriscofraude.domain;
+package com.example.analiseriscofraude.domain.enums;
 
 public enum MetodoPagamentoEnum {
     PIX,
